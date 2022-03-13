@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
+import './index.css'
+import router from './router'
+import vuetify from './plugins/vuetify'
+import '@babel/polyfill'
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  router,
+  vuetify,
+  render: h => h(App)
 }).$mount('#app')
