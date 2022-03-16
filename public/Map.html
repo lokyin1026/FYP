@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Click on Map</title>
+    <meta charset='utf-8'>
+    <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script>
+    <script src='https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js'></script>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <!-- dependent mapbox-gl -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.css' rel='stylesheet'/>
+    <!-- mapxus map -->
+    <script src='https://web-sdk.mapxus.com/prod/mapxus-map-3.6.5.js'></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body, #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id='map'></div>
+<div class='modal fade bd-example-modal-sm'>
+    <div class='modal-dialog modal-sm'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title'>Callback</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <pre><code></code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // init mapbox-gl
+    var mapbox = new mapboxgl.Map({
+        container: 'map',
+        zoom: 16.0
+    });
+    // init mapxus map
+    var map = new MapxusMap.Map({
+        map: mapbox,
+        appId: 'com.polyuhkcc.lbsproject.web',
+        secret: '1feOlgd/gr',
+        buildingId: 'f38591fbcd70488b985a5cf5cfd656c0'
+    });
+    // mapxus load map listener
+    map.renderComplete(function () {
+        // map click event
+        map.onMapClickListener(function (event) {
+            var result = {
+                floor: map.currentFloor,
+                lat: event.lngLat.lat,
+                lon: event.lngLat.lng
+            };
+            $('code').text(JSON.stringify(result, null, 2));
+            $('.modal').modal('show');
+        });
+    });
+</script>
+</body>
+
+</html>

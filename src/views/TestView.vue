@@ -1,5 +1,5 @@
 <template>
-<div>asafa</div>
+<div>asd</div>
 </template>
 
 <script>

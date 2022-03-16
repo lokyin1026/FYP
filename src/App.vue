@@ -1,18 +1,19 @@
 <template>
   <v-app>
-    <v-navigation-drawer app clipped></v-navigation-drawer>
-    <v-app-bar
+
+<!--    <v-app-bar id="app"
       app
       color="primary"
       dark
       clipped-left
+      height="100"
     >
-      <div class="d-flex align-center">
+      <div class="d-flex align-center tw-text-3xl tw-font-extrabold tw-font-serif">
         Air Quality
       </div>
 
       <v-spacer></v-spacer>
-    </v-app-bar>
+    </v-app-bar>-->
 
     <v-main>
       <router-view/>
@@ -30,3 +31,7 @@ export default {
   }),
 };
 </script>
+
+<style>
+
+</style>
